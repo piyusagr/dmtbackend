@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 import {
   ArgumentMetadata,
   BadRequestException,
@@ -7,6 +5,7 @@ import {
   Logger,
   PipeTransform,
 } from '@nestjs/common';
+import { Request } from 'express';
 
 @Injectable()
 export class FilesValidationPipe implements PipeTransform {
@@ -21,12 +20,23 @@ export class FilesValidationPipe implements PipeTransform {
   private logger = new Logger(FilesValidationPipe.name);
 
   transform(
-    files: Express.Multer.File[] | Express.Multer.File,
+    files: Request['files'], // This now expects { [fieldname: string]: File[] }
     metadata: ArgumentMetadata,
   ) {
-    if (Array.isArray(files)) return this.validateFilesArray(files);
-
-    return this.vaildateFile(files);
+    // Loop through the files object for each field
+    if (files && typeof files === 'object') {
+      Object.keys(files).forEach((fieldname) => {
+        const fileArray = files[fieldname];
+        if (Array.isArray(fileArray)) {
+          // Validate each file in the array
+          this.validateFilesArray(fileArray);
+        } else {
+          // Validate single file
+          this.validateFile(fileArray);
+        }
+      });
+    }
+    return files;
   }
 
   private isValidSize(file: Express.Multer.File) {
@@ -41,7 +51,7 @@ export class FilesValidationPipe implements PipeTransform {
     if (!files?.length) return undefined;
 
     if (!files.every((file) => this.isValidSize(file)))
-      throw new BadRequestException('File size is to large');
+      throw new BadRequestException('File size is too large');
 
     if (!files.every((file) => this.isValidType(file)))
       throw new BadRequestException('Contains invalid file type');
@@ -49,11 +59,11 @@ export class FilesValidationPipe implements PipeTransform {
     return files;
   }
 
-  private vaildateFile(file: Express.Multer.File) {
+  private validateFile(file: Express.Multer.File) {
     if (!file) return undefined;
 
     if (!this.isValidSize(file))
-      throw new BadRequestException('File size is to large');
+      throw new BadRequestException('File size is too large');
 
     if (!this.isValidType(file))
       throw new BadRequestException('Contains invalid file type');
