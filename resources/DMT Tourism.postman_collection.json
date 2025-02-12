@@ -1,0 +1,2818 @@
+{
+	"info": {
+		"_postman_id": "26c740b8-b9dd-4a5d-b01a-c0fdfc26afed",
+		"name": "DMT Tourism",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24347292"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "signup with email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();\r",
+									"postman.setEnvironmentVariable(\"token\", responseJson.data.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"ganesh\",\r\n    \"lastName\": \"nayanajith\",\r\n    \"email\": \"gaiyatech40@gmail.com\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/v1/auth/sign-up-email",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"auth",
+								"sign-up-email"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signin with email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();\r",
+									"postman.setEnvironmentVariable(\"token\", responseJson.data.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"gaiyatech40@gmail.com\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/v1/auth/sign-in",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"auth",
+								"sign-in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "resend email confirmation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"gaiyatech40@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/v1/auth/resend-email-confirmation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"auth",
+								"resend-email-confirmation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "email confirmation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdhaXlhdGVjaDQwQGdtYWlsLmNvbSIsImlhdCI6MTcxMzQ1MjYyNiwiZXhwIjoxNzEzNDc0MjI2fQ.fACwKA06wqLVpQduyoiJwtniSr7LJrWuWsJmRB-9Oiw\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/v1/auth/email-confirmation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"auth",
+								"email-confirmation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forgot-password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"gaiyatech40@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/v1/auth/forgot-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"auth",
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reset-password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdhaXlhdGVjaDQwQGdtYWlsLmNvbSIsImlhdCI6MTcxMzQ1NzQ1OCwiZXhwIjoxNzEzNDc5MDU4fQ.aMxNOSR6JiGo2PTwBC7TlejuniIYOOztZVIDRmUcGbA\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/v1/auth/reset-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"auth",
+								"reset-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signin [admin]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();\r",
+									"postman.setEnvironmentVariable(\"token\", responseJson.data.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin@gmail.com\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/v1/auth/sign-in",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"auth",
+								"sign-in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signin [seller]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();\r",
+									"postman.setEnvironmentVariable(\"token\", responseJson.data.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"seller@gmail.com\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/v1/auth/sign-in",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"auth",
+								"sign-in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signin [seller] DEV",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();\r",
+									"postman.setEnvironmentVariable(\"token\", responseJson.data.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"seller@gmail.com\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://dmt-tourism.onrender.com/v1/auth/sign-in",
+							"protocol": "https",
+							"host": [
+								"dmt-tourism",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"v1",
+								"auth",
+								"sign-in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signin [buyer]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();\r",
+									"postman.setEnvironmentVariable(\"token\", responseJson.data.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"ganeshnayanajith40@gmail.com\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/v1/auth/sign-in",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"auth",
+								"sign-in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/v1/auth/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Events",
+			"item": [
+				{
+					"name": "events - create [online]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();\r",
+									"postman.setEnvironmentVariable(\"onlineEventListingId\", responseJson.data.id);\r",
+									"postman.setEnvironmentVariable(\"onlineEventId\", responseJson.data.onlineEvent.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "files",
+									"type": "file",
+									"src": "/C:/Users/ganes/Downloads/download.png"
+								},
+								{
+									"key": "location",
+									"value": "123 Main Street, City",
+									"type": "text"
+								},
+								{
+									"key": "businessNature",
+									"value": "INDIVIDUAL",
+									"type": "text"
+								},
+								{
+									"key": "currency",
+									"value": "USD",
+									"type": "text"
+								},
+								{
+									"key": "isPaid",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "eventType",
+									"value": "ONLINE",
+									"type": "text"
+								},
+								{
+									"key": "highlight",
+									"value": "highlight",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Sample Online Event",
+									"type": "text"
+								},
+								{
+									"key": "dateType",
+									"value": "MULTIPLE",
+									"type": "text"
+								},
+								{
+									"key": "nbrOfDays",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "hoursPerDay",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "maxAttendances",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "language",
+									"value": "English",
+									"type": "text"
+								},
+								{
+									"key": "hostSkillLevel",
+									"value": "BEGINNER",
+									"type": "text"
+								},
+								{
+									"key": "isDiscountAvailable",
+									"value": "false",
+									"type": "text"
+								},
+								{
+									"key": "listingPaidType",
+									"value": "PROMOTED",
+									"type": "text"
+								},
+								{
+									"key": "noOfPromotionDays",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "onlineEvent[dateRanges][0][date]",
+									"value": "2024-02-01",
+									"type": "text"
+								},
+								{
+									"key": "onlineEvent[dateRanges][0][startTime]",
+									"value": "07:00",
+									"type": "text"
+								},
+								{
+									"key": "onlineEvent[dateRanges][0][endTime]",
+									"value": "10:00",
+									"type": "text"
+								},
+								{
+									"key": "onlineEvent[platform]",
+									"value": "Zoom",
+									"type": "text"
+								},
+								{
+									"key": "onlineEvent[link]",
+									"value": "https://zoom.us/join?event_id=12345",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "20",
+									"type": "text"
+								},
+								{
+									"key": "requirements[0]",
+									"value": "req",
+									"type": "text"
+								},
+								{
+									"key": "business[0]",
+									"value": "busi",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:{{port}}/v1/events",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "events - create [online] DEV",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"photos\": [\r\n        \"photo1.jpg\",\r\n        \"photo2.jpg\"\r\n    ],\r\n    \"location\": \"123 Main Street, City\",\r\n    \"businessNature\": \"INDIVIDUAL\",\r\n    \"currency\": \"USD\",\r\n    \"individualNbr\": \"12345\",\r\n    \"individualTaxIdNbr\": \"67890\",\r\n    \"businessRegistrationNbr\": \"R12345\",\r\n    \"businessTaxIdNbr\": \"T67890\",\r\n    \"price\": 100.00,\r\n    \"isPaid\": true,\r\n    \"listingPaidType\": \"FEATURED\",\r\n    \"noOfPromotionDays\": 2,\r\n    \"eventType\": \"ONLINE\",\r\n    \"onlineEvent\": {\r\n        \"category\": \"Webinar\",\r\n        \"name\": \"Sample Online Event\",\r\n        \"highlight\": \"highlight\",\r\n        \"imageUrl\": \"webinar_image.jpg\",\r\n        \"dateType\": \"MULTIPLE\",\r\n        \"dateRanges\": [\r\n            {\r\n                \"date\": \"2024-02-01\",\r\n                \"startTime\": \"07:00\",\r\n                \"endTime\": \"10:00\"\r\n            },\r\n            {\r\n                \"date\": \"2024-02-02\",\r\n                \"startTime\": \"13:00\",\r\n                \"endTime\": \"16:00\"\r\n            },\r\n            {\r\n                \"date\": \"2024-02-03\",\r\n                \"startTime\": \"16:00\",\r\n                \"endTime\": \"19:00\"\r\n            }\r\n        ],\r\n        \"maxAttendances\": 100,\r\n        \"language\": \"English\",\r\n        \"price\": 25.50,\r\n        \"status\": \"PENDING\",\r\n        \"requirements\": [\r\n            \"Computer\",\r\n            \"Internet Connection\"\r\n        ],\r\n        \"otherInformation\": \"Join our informative online event.\",\r\n        \"guestInformation\": \"Guests are welcome.\",\r\n        \"hostInformation\": \"Hosted by Jane Smith\",\r\n        \"cancellationPolicy\": \"Full refund if canceled 48 hours before the event.\",\r\n        \"hostSkillLevel\": \"BEGINNER\",\r\n        \"nbrOfDays\": 1,\r\n        \"hoursPerDay\": 2,\r\n        \"isDiscountAvailable\": true,\r\n        \"discount\": 15.0,\r\n        \"business\": [\r\n            \"Technology\",\r\n            \"Education\"\r\n        ],\r\n        \"experiential\": [\r\n            \"Interactive\"\r\n        ],\r\n        \"healthAndWellness\": \"No health-related content\",\r\n        \"specialInterest\": \"Digital Marketing\",\r\n        \"platform\": \"Zoom\",\r\n        \"link\": \"https://zoom.us/join?event_id=12345\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "https://dmt-tourism.onrender.com/v1/events",
+							"protocol": "https",
+							"host": [
+								"dmt-tourism",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"v1",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "events - create [onsite]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();\r",
+									"postman.setEnvironmentVariable(\"onsiteEventListingId\", responseJson.data.id);\r",
+									"postman.setEnvironmentVariable(\"onsiteEventId\", responseJson.data.onsiteEvent.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "files",
+									"type": "file",
+									"src": "/C:/Users/ganes/Downloads/download.png"
+								},
+								{
+									"key": "location",
+									"value": "123 Main Street, City",
+									"type": "text"
+								},
+								{
+									"key": "businessNature",
+									"value": "INDIVIDUAL",
+									"type": "text"
+								},
+								{
+									"key": "currency",
+									"value": "USD",
+									"type": "text"
+								},
+								{
+									"key": "isPaid",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "eventType",
+									"value": "ONSITE",
+									"type": "text"
+								},
+								{
+									"key": "highlight",
+									"value": "highlight",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Sample Onsite Event",
+									"type": "text"
+								},
+								{
+									"key": "dateType",
+									"value": "MULTIPLE",
+									"type": "text"
+								},
+								{
+									"key": "nbrOfDays",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "hoursPerDay",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "maxAttendances",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "language",
+									"value": "English",
+									"type": "text"
+								},
+								{
+									"key": "hostSkillLevel",
+									"value": "BEGINNER",
+									"type": "text"
+								},
+								{
+									"key": "isDiscountAvailable",
+									"value": "false",
+									"type": "text"
+								},
+								{
+									"key": "listingPaidType",
+									"value": "PROMOTED",
+									"type": "text"
+								},
+								{
+									"key": "noOfPromotionDays",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "onsiteEvent[dateRanges][0][date]",
+									"value": "2024-02-01",
+									"type": "text"
+								},
+								{
+									"key": "onsiteEvent[dateRanges][0][startTime]",
+									"value": "07:00",
+									"type": "text"
+								},
+								{
+									"key": "onsiteEvent[dateRanges][0][endTime]",
+									"value": "10:00",
+									"type": "text"
+								},
+								{
+									"key": "onsiteEvent[transferService]",
+									"value": "NOT_INCLUDED",
+									"type": "text"
+								},
+								{
+									"key": "onsiteEvent[latitude]",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "onsiteEvent[longitude]",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "onsiteEvent[extraAmount]",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:{{port}}/v1/events",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "events - create [onsite] DEV",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"photos\": [\r\n        \"photo1.jpg\",\r\n        \"photo2.jpg\"\r\n    ],\r\n    \"location\": \"123 Main Street, City\",\r\n    \"businessNature\": \"INDIVIDUAL\",\r\n    \"currency\": \"USD\",\r\n    \"individualNbr\": \"12345\",\r\n    \"individualTaxIdNbr\": \"67890\",\r\n    \"businessRegistrationNbr\": \"R12345\",\r\n    \"businessTaxIdNbr\": \"T67890\",\r\n    \"price\": 100,\r\n    \"isPaid\": true,\r\n    \"listingPaidType\": \"PROMOTED\",\r\n    \"noOfPromotionDays\": 2,\r\n    \"eventType\": \"ONSITE\",\r\n    \"onsiteEvent\": {\r\n        \"category\": \"Workshop\",\r\n        \"name\": \"Sample Onsite Event\",\r\n        \"highlight\": \"highlight\",\r\n        \"imageUrl\": \"event_image.jpg\",\r\n        \"dateType\": \"MULTIPLE\",\r\n        \"dateRanges\": [\r\n            {\r\n                \"date\": \"2024-02-01\",\r\n                \"startTime\": \"07:00\",\r\n                \"endTime\": \"10:00\"\r\n            },\r\n            {\r\n                \"date\": \"2024-02-02\",\r\n                \"startTime\": \"13:00\",\r\n                \"endTime\": \"16:00\"\r\n            },\r\n            {\r\n                \"date\": \"2024-02-03\",\r\n                \"startTime\": \"16:00\",\r\n                \"endTime\": \"19:00\"\r\n            }\r\n        ],\r\n        \"maxAttendances\": 50,\r\n        \"language\": \"English\",\r\n        \"price\": 75.0,\r\n        \"extraAmount\": 75.0,\r\n        \"status\": \"PENDING\",\r\n        \"requirements\": [\r\n            \"Laptop\",\r\n            \"Notebook\"\r\n        ],\r\n        \"otherInformation\": \"This is a sample onsite event.\",\r\n        \"guestInformation\": \"Guests are welcome.\",\r\n        \"hostInformation\": \"Hosted by John Doe\",\r\n        \"cancellationPolicy\": \"Full refund if canceled 7 days before the event.\",\r\n        \"hostSkillLevel\": \"BEGINNER\",\r\n        \"nbrOfDays\": 1,\r\n        \"hoursPerDay\": 7,\r\n        \"isDiscountAvailable\": true,\r\n        \"discount\": 10.0,\r\n        \"business\": [\r\n            \"Networking\",\r\n            \"Professional Development\"\r\n        ],\r\n        \"experiential\": [\r\n            \"Hands-on\"\r\n        ],\r\n        \"healthAndWellness\": \"Yoga session included\",\r\n        \"specialInterest\": \"Technology\",\r\n        // \"customDates\": [\r\n        //     \"2023-10-22\",\r\n        //     \"2023-10-29\"\r\n        // ],\r\n        // \"isCustomDatesAvailable\": true,\r\n        \"privateGroupHosting\": \"NOT_AVAILABLE\",\r\n        \"privateGroupHostingCharge\": 50.0,\r\n        \"transferService\": \"NOT_INCLUDED\",\r\n        \"latitude\": 35.5,\r\n        \"longitude\": 35.5\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "https://dmt-tourism.onrender.com/v1/events",
+							"protocol": "https",
+							"host": [
+								"dmt-tourism",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"v1",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "events- delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:{{port}}/v1/events/cluodma7v0001id767x9xyl10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"events",
+								"cluodma7v0001id767x9xyl10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "events- get all",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:{{port}}/v1/events",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "events- get all DEV",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://dmt-tourism.onrender.com/v1/events",
+							"protocol": "https",
+							"host": [
+								"dmt-tourism",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"v1",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "events- get one",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"eventListingId\":\"3c99d64e-cdaf-4ecb-b8aa-c5c781e97560\",\r\n    \"eventRequestId\":\"3c1df146-e3b8-49c7-aeda-47bb9230f0fc\",\r\n    \"status\":\"APPROVED\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:{{port}}/v1/events/cluodma7v0001id767x9xyl10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"events",
+								"cluodma7v0001id767x9xyl10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "events/hosted- get all by seller id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"eventListingId\":\"3c99d64e-cdaf-4ecb-b8aa-c5c781e97560\",\r\n    \"eventRequestId\":\"3c1df146-e3b8-49c7-aeda-47bb9230f0fc\",\r\n    \"status\":\"APPROVED\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:{{port}}/v1/events/hosted",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"events",
+								"hosted"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "events/request - create [online]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();\r",
+									"postman.setEnvironmentVariable(\"onlineEventRequestId\", responseJson.data.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"eventListingId\": \"{{onlineEventListingId}}\"\r\n    // \"buyerId\": 2\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:{{port}}/v1/events/request",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"events",
+								"request"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "events/request - create [onsite]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();\r",
+									"postman.setEnvironmentVariable(\"onsiteEventRequestId\", responseJson.data.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"eventListingId\": \"{{onsiteEventListingId}}\"\r\n    // \"buyerId\": 2\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:{{port}}/v1/events/request",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"events",
+								"request"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "events/request - get by event id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:{{port}}/v1/events/request/3c99d64e-cdaf-4ecb-b8aa-c5c781e97560",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"events",
+								"request",
+								"3c99d64e-cdaf-4ecb-b8aa-c5c781e97560"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "events/request/approval - update approval",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"eventListingId\":\"{{onlineEventListingId}}\",\r\n    \"eventRequestId\":\"3c1df146-e3b8-49c7-aeda-47bb9230f0fc\",\r\n    \"status\":\"APPROVAL_PENDING\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:{{port}}/v1/events/request/approval",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"events",
+								"request",
+								"approval"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "events/reservations - get by buyer id [buyer]",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:{{port}}/v1/events/reservations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"events",
+								"reservations"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Event Reviews",
+			"item": [
+				{
+					"name": "event-reviews-online",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();\r",
+									"postman.setEnvironmentVariable(\"onlineEventReviewId\", responseJson.data.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"eventListingId\": \"{{onlineEventListingId}}\",\r\n    \"eventId\": \"{{onlineEventId}}\",\r\n    \"eventRequestId\": \"{{onlineEventRequestId}}\",\r\n    \"sellerCommunication\": 5.8,\r\n    \"serviceQuality\": 5.0,\r\n    \"valueForMoney\": 6.3\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/v1/event-reviews/online",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"event-reviews",
+								"online"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "event-reviews-onsite",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();\r",
+									"postman.setEnvironmentVariable(\"onsiteEventReviewId\", responseJson.data.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"eventListingId\": \"{{onsiteEventListingId}}\",\r\n    \"eventId\": \"{{onsiteEventId}}\",\r\n    \"eventRequestId\": \"{{onsiteEventRequestId}}\",\r\n    \"facilities\": 5.8,\r\n    \"location\": 5.8,\r\n    \"serviceQuality\": 5.0,\r\n    \"valueForMoney\": 1\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/v1/event-reviews/onsite",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"event-reviews",
+								"onsite"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getEventReviewsByEventListingId online - [buyer, seller, admin]",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"eventListingId\": \"{{onsiteEventListingId}}\",\r\n    \"eventId\": \"{{onsiteEventId}}\",\r\n    \"eventRequestId\": \"{{onsiteEventRequestId}}\",\r\n    \"facilities\": 5.8,\r\n    \"location\": 5.8,\r\n    \"serviceQuality\": 5.0,\r\n    \"valueForMoney\": 1\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/v1/event-reviews/{{onlineEventListingId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"event-reviews",
+								"{{onlineEventListingId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getEventReviewsByEventListingId onsite - [buyer, seller, admin]",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"eventListingId\": \"{{onsiteEventListingId}}\",\r\n    \"eventId\": \"{{onsiteEventId}}\",\r\n    \"eventRequestId\": \"{{onsiteEventRequestId}}\",\r\n    \"facilities\": 5.8,\r\n    \"location\": 5.8,\r\n    \"serviceQuality\": 5.0,\r\n    \"valueForMoney\": 1\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/v1/event-reviews/{{onsiteEventListingId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"event-reviews",
+								"{{onsiteEventListingId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteReviewByReviewId online - [admin]",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"eventListingId\": \"{{onsiteEventListingId}}\",\r\n    \"eventId\": \"{{onsiteEventId}}\",\r\n    \"eventRequestId\": \"{{onsiteEventRequestId}}\",\r\n    \"facilities\": 5.8,\r\n    \"location\": 5.8,\r\n    \"serviceQuality\": 5.0,\r\n    \"valueForMoney\": 1\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/v1/event-reviews/{{onlineEventListingId}}/{{onlineEventReviewId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"event-reviews",
+								"{{onlineEventListingId}}",
+								"{{onlineEventReviewId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteReviewByReviewId onsite - [admin]",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"eventListingId\": \"{{onsiteEventListingId}}\",\r\n    \"eventId\": \"{{onsiteEventId}}\",\r\n    \"eventRequestId\": \"{{onsiteEventRequestId}}\",\r\n    \"facilities\": 5.8,\r\n    \"location\": 5.8,\r\n    \"serviceQuality\": 5.0,\r\n    \"valueForMoney\": 1\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/v1/event-reviews/{{onsiteEventListingId}}/{{onsiteEventReviewId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"event-reviews",
+								"{{onsiteEventListingId}}",
+								"{{onsiteEventReviewId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "get all users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/v1/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user status - by admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": 3,\r\n    \"status\": \"BLOCKED\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/v1/users/status",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"users",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user profile - by user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"firstName\": \"ganeshupdated\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user profile - by admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"ganesh\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/v1/users/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"users",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "switch user role - [buyer,seller]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();\r",
+									"postman.setEnvironmentVariable(\"token\", responseJson.data.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": 4,\r\n    \"status\": \"BLOCKED\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://dmt-tourism.onrender.com/v1/users/switch",
+							"protocol": "https",
+							"host": [
+								"dmt-tourism",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"v1",
+								"users",
+								"switch"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "switch user role - [buyer,seller] [DEV]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();\r",
+									"postman.setEnvironmentVariable(\"token\", responseJson.data.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": 4,\r\n    \"status\": \"BLOCKED\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/v1/users/switch",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"users",
+								"switch"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "send-whatsapp-code - [SELLER]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"country\": \"Sri Lanka\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/v1/users/send-whatsapp-code",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"users",
+								"send-whatsapp-code"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "send-whatsapp-code - [SELLER]",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\":\"555917\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/v1/users/check-whatsapp-code",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"v1",
+								"users",
+								"check-whatsapp-code"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Paypal Test",
+			"item": [
+				{
+					"name": "https://www.sandbox.paypal.com/graphql?fetch_credit_form_submit",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authority",
+								"value": "www.sandbox.paypal.com"
+							},
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "accept-language",
+								"value": "en-US,en;q=0.9,fr;q=0.8"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "cookie",
+								"value": "ts_c=vr%3D5e52b55b18c0a6022345c124dce0e5bf%26vt%3D5e52b55b18c0a6022345c124dce0e5be; nsid=s%3AtpiOOJy3FsZ67Old__QRvtlQZCOOV7QY.Uc3F6jj3ilL%2BLYaTpktCAl7UEIODxoRD92D3rfNYbTQ; jIHSLr4M5Yy4U-3CrkGq73ovwuW=S23AAIzzwRXgWptqy4rtWs_v7OCk5PJkLHUotUql-fuOc9dME64BiI0u2PI-0S-JVbQAQyJpTb59zk9XaiAKsy2c2fmIeqMnQ; -1ILhdyICORs4hS4xTUr41S8iP0=WUyvlFtlVQHDF7eXBrxGB2ElBsvkSTG2BEOKvcfO5_VMQ4lMXKP3J3kIcwjTgrlgaMKebmXoKvhYsYWa; login_email=test%40gmail.com; enforce_policy=global; LANG=en_US%3BLK; tsrce=checkoutjs; x-pp-s=eyJ0IjoiMTcwMjM4OTY5OTU0OSIsImwiOiIwIiwibSI6IjAifQ; ts=vreXpYrS%3D1797084099%26vteXpYrS%3D1702391499%26vr%3D5e52b55b18c0a6022345c124dce0e5bf%26vt%3D5e52b55b18c0a6022345c124dce0e5be%26vtyp%3Dnew"
+							},
+							{
+								"key": "origin",
+								"value": "https://www.sandbox.paypal.com"
+							},
+							{
+								"key": "paypal-client-context",
+								"value": "9J768722UL9763624"
+							},
+							{
+								"key": "paypal-client-metadata-id",
+								"value": "9J768722UL9763624"
+							},
+							{
+								"key": "referer",
+								"value": "https://www.sandbox.paypal.com/smart/card-fields?sessionID=uid_60b8370a76_mtm6ntg6ndy&buttonSessionID=uid_07bce413c9_mtm6ntg6nta&locale.x=en_US&commit=true&env=sandbox&sdkMeta=eyJ1cmwiOiJodHRwczovL3d3dy5wYXlwYWwuY29tL3Nkay9qcz9jbGllbnQtaWQ9QVR4cEUtc0Vfb2dqejR6a0NUTmRpREthTG4tV3VFR0Jub0czbkZYOXFRV21DZ29jNEczOVVIRHUxZVZieHFxR3ZSblhDSHJqNWFzM3BtU0QmY3VycmVuY3k9VVNEJmludGVudD1jYXB0dXJlIiwiYXR0cnMiOnsiZGF0YS1zZGstaW50ZWdyYXRpb24tc291cmNlIjoicmVhY3QtcGF5cGFsLWpzIiwiZGF0YS11aWQiOiJ1aWRfZHBhY2p6dG52YmFhenZmeG1rZmRzZXN1Z2tnZWhqIn19&disable-card=&token=9J768722UL9763624"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Google Chrome\";v=\"120\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "sec-fetch-dest",
+								"value": "empty"
+							},
+							{
+								"key": "sec-fetch-mode",
+								"value": "cors"
+							},
+							{
+								"key": "sec-fetch-site",
+								"value": "same-origin"
+							},
+							{
+								"key": "user-agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "x-app-name",
+								"value": "standardcardfields"
+							},
+							{
+								"key": "x-country",
+								"value": "LK"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"query\": \"\\n        mutation payWithCard(\\n            $token: String!\\n            $card: CardInput!\\n            $phoneNumber: String\\n            $firstName: String\\n            $lastName: String\\n            $shippingAddress: AddressInput\\n            $billingAddress: AddressInput\\n            $email: String\\n            $currencyConversionType: CheckoutCurrencyConversionType\\n            $installmentTerm: Int\\n        ) {\\n            approveGuestPaymentWithCreditCard(\\n                token: $token\\n                card: $card\\n                phoneNumber: $phoneNumber\\n                firstName: $firstName\\n                lastName: $lastName\\n                email: $email\\n                shippingAddress: $shippingAddress\\n                billingAddress: $billingAddress\\n                currencyConversionType: $currencyConversionType\\n                installmentTerm: $installmentTerm\\n            ) {\\n                flags {\\n                    is3DSecureRequired\\n                }\\n                cart {\\n                    intent\\n                    cartId\\n                    buyer {\\n                        userId\\n                        auth {\\n                            accessToken\\n                        }\\n                    }\\n                    returnUrl {\\n                        href\\n                    }\\n                }\\n                paymentContingencies {\\n                    threeDomainSecure {\\n                        status\\n                        method\\n                        redirectUrl {\\n                            href\\n                        }\\n                        parameter\\n                    }\\n                }\\n            }\\n        }\\n        \",\r\n    \"variables\": {\r\n        \"token\": \"9J768722UL9763624\",\r\n        \"card\": {\r\n            \"cardNumber\": \"4032039534213337\",\r\n            \"expirationDate\": \"03/2026\",\r\n            \"postalCode\": \"\",\r\n            \"securityCode\": \"952\"\r\n        },\r\n        \"phoneNumber\": \"0776361068\",\r\n        \"firstName\": \"test\",\r\n        \"lastName\": \"test\",\r\n        \"billingAddress\": {\r\n            \"givenName\": \"test\",\r\n            \"familyName\": \"test\",\r\n            \"line1\": \"gegawa, central, batheegama\",\r\n            \"line2\": null,\r\n            \"city\": \"dickwella\",\r\n            \"state\": null,\r\n            \"postalCode\": \"\",\r\n            \"country\": \"LK\"\r\n        },\r\n        \"shippingAddress\": {\r\n            \"givenName\": \"test\",\r\n            \"familyName\": \"test\",\r\n            \"line1\": \"gegawa, central, batheegama\",\r\n            \"line2\": null,\r\n            \"city\": \"dickwella\",\r\n            \"state\": null,\r\n            \"postalCode\": \"\",\r\n            \"country\": \"LK\"\r\n        },\r\n        \"email\": \"test@gmail.com\",\r\n        \"currencyConversionType\": \"PAYPAL\"\r\n    },\r\n    \"operationName\": null\r\n}"
+						},
+						"url": {
+							"raw": "https://www.sandbox.paypal.com/graphql?fetch_credit_form_submit",
+							"protocol": "https",
+							"host": [
+								"www",
+								"sandbox",
+								"paypal",
+								"com"
+							],
+							"path": [
+								"graphql"
+							],
+							"query": [
+								{
+									"key": "fetch_credit_form_submit",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"source\": {\r\n    \"type\": \"token\",\r\n    \"token\": \"A21AAJCmRIJslIzpzxYVoz7WbIeYVcf1smzAeCaWqdAvURGI7ZEyWztXj5rWY40l60RVEymQILmQ0AZMZnsYzxdaW2utCAKCg\"\r\n  },\r\n  \"amount\": 6500,\r\n  \"currency\": \"USD\",\r\n  \"processing_channel_id\": \"pc_ovo75iz4hdyudnx6tu74mum3fq\",\r\n  \"reference\": \"ORD-5023-4E89\",\r\n  \"metadata\": {\r\n    \"udf1\": \"TEST123\",\r\n    \"coupon_code\": \"NY2018\",\r\n    \"partner_id\": 123989\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.sandbox.checkout.com/payments",
+							"protocol": "https",
+							"host": [
+								"api",
+								"sandbox",
+								"checkout",
+								"com"
+							],
+							"path": [
+								"payments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://api-m.sandbox.paypal.com/v1/oauth2/token",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "EBqOP-cWm1iDfsr-urkipvFjll-yRdOjQj9xV5lnLHCfUUGpaHM-uyqSPhQ447bBiX4l3F89hhj152_X",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "Aey0B_OHTjcBVuY12qU0MdON5vHfGifGrIBMxJcwwRifjo2mhoP6tzy6e9m_bWwWvZjtis3hp4bFGVia",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api-m.sandbox.paypal.com/v1/oauth2/token",
+							"protocol": "https",
+							"host": [
+								"api-m",
+								"sandbox",
+								"paypal",
+								"com"
+							],
+							"path": [
+								"v1",
+								"oauth2",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Places",
+			"item": [
+				{
+					"name": "create a place",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();\r",
+									"postman.setEnvironmentVariable(\"placeId\", responseJson.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photos",
+									"type": "file",
+									"src": "/Users/ganesh/Downloads/download.jpeg"
+								},
+								{
+									"key": "title",
+									"value": "Beautiful Beach House",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "A stunning beach house with amazing ocean views.",
+									"type": "text"
+								},
+								{
+									"key": "street",
+									"value": "123 Ocean Avenue",
+									"type": "text"
+								},
+								{
+									"key": "city",
+									"value": "Seaside",
+									"type": "text"
+								},
+								{
+									"key": "province",
+									"value": "California",
+									"type": "text"
+								},
+								{
+									"key": "postal_code",
+									"value": "90210",
+									"type": "text"
+								},
+								{
+									"key": "country",
+									"value": "United States",
+									"type": "text"
+								},
+								{
+									"key": "businessNature",
+									"value": "BUSINESS",
+									"type": "text"
+								},
+								{
+									"key": "latitude",
+									"value": "30.5",
+									"type": "text"
+								},
+								{
+									"key": "longitude",
+									"value": "30.5",
+									"type": "text"
+								},
+								{
+									"key": "isDiscountAvailable",
+									"value": "true",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "discount",
+									"value": "50",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "transferService",
+									"value": "INCLUDED",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "extraAmount",
+									"value": "50",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:{{port}}/v1/places",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"places"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create a place booking",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();\r",
+									"postman.setEnvironmentVariable(\"placeBookingId\", responseJson.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"room_ids\": [\r\n        4\r\n    ],\r\n    \"start_date\": \"2024-03-20T12:00:00Z\",\r\n    \"end_date\": \"2024-03-25T12:00:00Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:{{port}}/v1/book/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"book",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create a place review",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cleanliness\": 8.5,\r\n    \"facilities\": 8.5,\r\n    \"location\": 9.5,\r\n    \"roomComfort\": 7.5,\r\n    \"serviceQuality\": 7.5,\r\n    \"valueForMoney\": 9.5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:{{port}}/v1/places/{{placeId}}/reviews",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"places",
+								"{{placeId}}",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create a place [DEV]",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "files",
+									"type": "file",
+									"src": "/C:/Users/ganes/Downloads/download.png"
+								},
+								{
+									"key": "title",
+									"value": "Beautiful Beach House",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "A stunning beach house with amazing ocean views.",
+									"type": "text"
+								},
+								{
+									"key": "street",
+									"value": "123 Ocean Avenue",
+									"type": "text"
+								},
+								{
+									"key": "city",
+									"value": "Seaside",
+									"type": "text"
+								},
+								{
+									"key": "province",
+									"value": "California",
+									"type": "text"
+								},
+								{
+									"key": "postal_code",
+									"value": "90210",
+									"type": "text"
+								},
+								{
+									"key": "country",
+									"value": "United States",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "businessNature",
+									"value": "BUSINESS",
+									"type": "text"
+								},
+								{
+									"key": "isDiscountAvailable",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "transferService",
+									"value": "INCLUDED",
+									"type": "text"
+								},
+								{
+									"key": "latitude",
+									"value": "30.5",
+									"type": "text"
+								},
+								{
+									"key": "longitude",
+									"value": "30.5",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://dmt-tourism.onrender.com/v1/places",
+							"protocol": "https",
+							"host": [
+								"dmt-tourism",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"v1",
+								"places"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all places [DEV]",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://dmt-tourism.onrender.com/v1/places",
+							"protocol": "https",
+							"host": [
+								"dmt-tourism",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"v1",
+								"places"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all places",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:{{port}}/v1/places",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"places"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get seller created places",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:{{port}}/v1/places/seller?sellerId=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"places",
+								"seller"
+							],
+							"query": [
+								{
+									"key": "sellerId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all place bookings for a buyer [buyer]",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"room_ids\": [\r\n        2\r\n    ],\r\n    \"start_date\": \"2024-03-20T12:00:00Z\",\r\n    \"end_date\": \"2024-03-25T12:00:00Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:{{port}}/v1/book",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"book"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Rooms",
+			"item": [
+				{
+					"name": "create a room - by seller",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();\r",
+									"postman.setEnvironmentVariable(\"roomId\", responseJson.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"place_id\": 1,\r\n    \"title\": \"Test room\",\r\n    \"price\": 500,\r\n    \"stock\": 10,\r\n    \"room_type\": \"suite\",\r\n    \"isDiscountAvailable\": true,\r\n    \"discount\": 50,\r\n    \"transferService\": \"EXTRA_COST\",\r\n    \"extraAmount\": 0,\r\n    \"beds\": [\r\n        {\r\n            \"bed_type\": \"string\",\r\n            \"amount\": 0\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:{{port}}/v1/rooms",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"rooms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get rooms for a place - by seller",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();\r",
+									"postman.setEnvironmentVariable(\"roomId\", responseJson.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:{{port}}/v1/rooms/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"rooms",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get room - by seller",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();\r",
+									"postman.setEnvironmentVariable(\"roomId\", responseJson.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:{{port}}/v1/rooms/1/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"rooms",
+								"1",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete room - by seller",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();\r",
+									"postman.setEnvironmentVariable(\"roomId\", responseJson.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:{{port}}/v1/rooms/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"rooms",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "home",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/v1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"v1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "swagger",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

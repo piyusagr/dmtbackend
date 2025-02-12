@@ -1,0 +1,668 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum EnumUserRole {
+  ADMIN
+  BUYER
+  SELLER
+}
+
+enum EnumUserStatus {
+  ACTIVE
+  BLOCKED
+}
+
+model User {
+  id                        Int                        @id @default(autoincrement())
+  firstName                 String
+  lastName                  String
+  email                     String                     @unique
+  password                  String?
+  phoneNumber               String?
+  country                   String?
+  role                      EnumUserRole               @default(BUYER)
+  isSeller                  Boolean                    @default(false)
+  isEmailConfirmed          Boolean                    @default(false)
+  emailVerifyToken          String?
+  passwordResetToken        String?
+  isPhoneNumberConfirmed    Boolean                    @default(false)
+  isCountryConfirmed        Boolean                    @default(false)
+  status                    EnumUserStatus             @default(ACTIVE)
+  // system related
+  createdAt                 DateTime                   @default(now())
+  updatedAt                 DateTime                   @default(now())
+  // relations
+  reviews                   Review[]
+  places                    Place[]
+  bookings                  Booking[]                  @relation(name: "buyer")
+  reservations              Booking[]                  @relation(name: "seller")
+  BuyersOnlineEventRequests BuyersOnlineEventRequest[]
+  BuyersOnSiteEventRequests BuyersOnsiteEventRequest[]
+  OnlineEvent               OnlineEvent[]
+  OnsiteEvent               OnsiteEvent[]
+  EventListing              EventListing[]
+  OnlineEventReview         OnlineEventReview[]
+  OnsiteEventReview         OnsiteEventReview[]
+  Payment                   Payment[]
+  EventBuyerHistory         EventBuyerHistory[]
+  EventBoosterBuyerHistory  EventBoosterBuyerHistory[]
+  PlaceBuyerHistory         PlaceBuyerHistory[]
+}
+
+model EventListing {
+  id                       String                     @id @default(cuid())
+  photos                   String[]
+  location                 String
+  businessNature           EnumBusinessNature
+  currency                 String
+  individualNbr            String?
+  individualTaxIdNbr       String?
+  businessRegistrationNbr  String?
+  businessTaxIdNbr         String?
+  price                    Float?
+  eventType                EnumEventType
+  isBoosted                Boolean                    @default(false)
+  maxBoostedDay            Int?
+  // moved
+  category                 String?
+  highlight                String
+  name                     String
+  imageUrl                 String?
+  dateType                 EnumEventDateType
+  nbrOfDays                Int
+  hoursPerDay              Float
+  maxAttendances           Int
+  language                 String
+  status                   EnumExperienceEventStatus?
+  requirements             String[]                   @default([])
+  otherInformation         String?
+  guestInformation         String?
+  hostInformation          String?
+  cancellationPolicy       String?
+  hostSkillLevel           EnumHostSkillLevel
+  isDiscountAvailable      Boolean
+  discount                 Float?
+  business                 String[]
+  experiential             String[]
+  healthAndWellness        String?
+  specialInterest          String?
+  // will not be use in the future, change to isBoosted
+  isPaid                   Boolean                    @default(false)
+  // not will be use in the futre, change to eventBoostedCategoryId
+  listingPaidType          EnumListingPaidType?
+  noOfPromotionDays        Int
+  // system related
+  createdAt                DateTime                   @default(now())
+  updatedAt                DateTime                   @updatedAt
+  isActive                 Boolean                    @default(true)
+  isRetired                Boolean                    @default(false)
+  // relations
+  sellerId                 Int
+  Seller                   User                       @relation(fields: [sellerId], references: [id])
+  OnlineEvent              OnlineEvent?
+  OnsiteEvent              OnsiteEvent?
+  BuyersOnlineEventRequest BuyersOnlineEventRequest[]
+  BuyersOnsiteEventRequest BuyersOnsiteEventRequest[]
+  OnlineEventReview        OnlineEventReview[]
+  OnsiteEventReview        OnsiteEventReview[]
+  EventBuyerHistory        EventBuyerHistory[]
+  EventBoosterBuyerHistory EventBoosterBuyerHistory[]
+  eventBoostedCategoryId   Int?
+  EventBoostedCategory     EventBoostedCategory?      @relation(fields: [eventBoostedCategoryId], references: [id])
+  files                    Asset[]                    @relation(name: "files")
+}
+
+model OnlineEvent {
+  id                       String                     @id @default(cuid())
+  dateRanges               Json[]
+  // online specific
+  platform                 String
+  link                     String?
+  // system related
+  createdAt                DateTime                   @default(now())
+  updatedAt                DateTime                   @updatedAt
+  isActive                 Boolean                    @default(true)
+  isRetired                Boolean                    @default(false)
+  // relations
+  sellerId                 Int
+  Seller                   User                       @relation(fields: [sellerId], references: [id])
+  eventListingId           String                     @unique
+  EventListing             EventListing               @relation(fields: [eventListingId], references: [id])
+  BuyersOnlineEventRequest BuyersOnlineEventRequest[]
+  OnlineEventReview        OnlineEventReview[]
+}
+
+model OnsiteEvent {
+  id                        String                     @id @default(cuid())
+  // onsite specific
+  dateRanges                Json[]
+  extraAmount               Float
+  privateGroupHosting       EnumPrivateGroupHosting?
+  privateGroupHostingCharge Float?
+  transferService           EnumTransferService
+  latitude                  Float
+  longitude                 Float
+  // system related
+  createdAt                 DateTime                   @default(now())
+  updatedAt                 DateTime                   @updatedAt
+  isActive                  Boolean                    @default(true)
+  isRetired                 Boolean                    @default(false)
+  // relations
+  sellerId                  Int
+  Seller                    User                       @relation(fields: [sellerId], references: [id])
+  eventListingId            String                     @unique
+  EventListing              EventListing               @relation(fields: [eventListingId], references: [id])
+  BuyersOnsiteEventRequest  BuyersOnsiteEventRequest[]
+  OnsiteEventReview         OnsiteEventReview[]
+}
+
+model EventBuyerHistory {
+  id String @id @default(cuid())
+
+  isApproved Boolean?
+  isRefunded Boolean?
+
+  paymentId String
+  Payment   Payment      @relation(fields: [paymentId], references: [id])
+  buyerId   Int
+  Buyer     User         @relation(fields: [buyerId], references: [id])
+  eventId   String
+  Event     EventListing @relation(references: [id], fields: [eventId])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model PlaceBuyerHistory {
+  id String @id @default(cuid())
+
+  longOfStay Int?
+  isApproved Boolean?
+  isRefunded Boolean?
+
+  paymentId String
+  Payment   Payment @relation(fields: [paymentId], references: [id])
+  buyerId   Int
+  Buyer     User    @relation(fields: [buyerId], references: [id])
+  placeId   Int
+  Place     Place   @relation(references: [id], fields: [placeId])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model EventBoosterBuyerHistory {
+  id String @id @default(cuid())
+
+  isApproved Boolean?
+  isRefunded Boolean?
+
+  paymentId String
+  Payment   Payment      @relation(fields: [paymentId], references: [id])
+  sellerId  Int
+  Seller    User         @relation(fields: [sellerId], references: [id])
+  eventId   String
+  Event     EventListing @relation(references: [id], fields: [eventId])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Payment {
+  id    String @id @default(cuid())
+  refId String @unique
+
+  context          PaymentContext?
+  amount           Float?
+  fee              Float?
+  fixRate          Float?
+  feeAmount        Float?
+  totalAmount      Float?
+  payerId          String?
+  payerName        String?
+  payerEmail       String?
+  payerCountryCode String?
+  paidAt           DateTime?
+  isPaid           Boolean         @default(false)
+
+  haveNextPayment   Boolean?
+  nextPaymentAmount Float?
+  isNextPaymentPaid Boolean?
+
+  userId Int
+  User   User @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  EventBuyerHistory        EventBuyerHistory[]
+  EventBoosterBuyerHistory EventBoosterBuyerHistory[]
+  BuyersOnlineEventRequest BuyersOnlineEventRequest[]
+  BuyersOnsiteEventRequest BuyersOnsiteEventRequest[]
+  PlaceBuyerHistory        PlaceBuyerHistory[]
+}
+
+model PaymentSetting {
+  id Int @id @default(autoincrement())
+
+  platformCharge      Float
+  platformCurrency    String?
+  platformCountryCode String?
+
+  domesticTransactionFee      Float?
+  internationalTransactionFee Float?
+  payoutDomesticFee           Float?
+  payoutInternationalFee      Float?
+  currencyFixRate             Float?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model EventBoostedCategory {
+  id Int @id @default(autoincrement())
+
+  name   String
+  charge Float
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  EventListing EventListing[]
+}
+
+enum PaymentContext {
+  CUSTOMER_BUY_EVENT_ONSITE
+  CUSTOMER_BUY_EVENT_ONLINE
+  CUSTOMER_BOOK_PLACE
+  SELLER_BOOST_EVENT
+}
+
+model BuyersOnlineEventRequest {
+  id                String                          @id @default(cuid())
+  status            EnumExperinceEventRequestStatus @default(APPROVAL_PENDING)
+  isRefunded        Boolean                         @default(false)
+  paymentStatus     EnumOnlineEventPaymentStatus    @default(FULL_AMOUNT_PENDING)
+  // system related
+  createdAt         DateTime                        @default(now())
+  updatedAt         DateTime                        @updatedAt
+  // relations
+  eventListingId    String
+  EventListing      EventListing                    @relation(fields: [eventListingId], references: [id])
+  eventId           String
+  Event             OnlineEvent                     @relation(fields: [eventId], references: [id])
+  buyerId           Int
+  Buyer             User                            @relation(fields: [buyerId], references: [id])
+  paymentId         String?
+  Payment           Payment?                        @relation(fields: [paymentId], references: [id])
+  OnlineEventReview OnlineEventReview[]
+}
+
+model BuyersOnsiteEventRequest {
+  id                String                          @id @default(cuid())
+  status            EnumExperinceEventRequestStatus @default(APPROVAL_PENDING)
+  isRefunded        Boolean                         @default(false)
+  paymentStatus     EnumOnlineEventPaymentStatus    @default(FULL_AMOUNT_PENDING)
+  // system related
+  createdAt         DateTime                        @default(now())
+  updatedAt         DateTime                        @updatedAt
+  // relations
+  eventListingId    String
+  EventListing      EventListing                    @relation(fields: [eventListingId], references: [id])
+  eventId           String
+  Event             OnsiteEvent                     @relation(fields: [eventId], references: [id])
+  buyerId           Int
+  Buyer             User                            @relation(fields: [buyerId], references: [id])
+  paymentId         String?
+  Payment           Payment?                        @relation(fields: [paymentId], references: [id])
+  OnsiteEventReview OnsiteEventReview[]
+}
+
+model OnlineEventReview {
+  id                       String                   @id @default(cuid())
+  sellerCommunication      Float
+  serviceQuality           Float
+  valueForMoney            Float
+  // system related
+  createdAt                DateTime                 @default(now())
+  updatedAt                DateTime                 @updatedAt
+  // relations
+  eventListingId           String
+  EventListing             EventListing             @relation(fields: [eventListingId], references: [id])
+  eventId                  String
+  Event                    OnlineEvent              @relation(fields: [eventId], references: [id])
+  eventRequestId           String
+  BuyersOnlineEventRequest BuyersOnlineEventRequest @relation(fields: [eventRequestId], references: [id])
+  buyerId                  Int
+  Buyer                    User                     @relation(fields: [buyerId], references: [id])
+}
+
+model OnsiteEventReview {
+  id                       String                   @id @default(cuid())
+  facilities               Float
+  location                 Float
+  serviceQuality           Float
+  valueForMoney            Float
+  // system related
+  createdAt                DateTime                 @default(now())
+  updatedAt                DateTime                 @updatedAt
+  // relations
+  eventListingId           String
+  EventListing             EventListing             @relation(fields: [eventListingId], references: [id])
+  eventId                  String
+  Event                    OnsiteEvent              @relation(fields: [eventId], references: [id])
+  eventRequestId           String
+  BuyersOnsiteEventRequest BuyersOnsiteEventRequest @relation(fields: [eventRequestId], references: [id])
+  buyerId                  Int
+  Buyer                    User                     @relation(fields: [buyerId], references: [id])
+}
+
+enum EnumEventDateType {
+  SINGLE
+  MULTIPLE
+}
+
+enum EnumExperienceEventStatus {
+  PENDING
+  ON_GOING
+  COMPLETED
+  CANCELLED
+}
+
+enum EnumExperinceEventRequestStatus {
+  APPROVAL_PENDING
+  APPROVED
+  DECLINED
+  COMPLETED
+}
+
+enum EnumOnlineEventPaymentStatus {
+  FULL_AMOUNT_PENDING
+  FULL_AMOUNT_DEDUCTED
+  FULL_AMOUNT_REFUND_PENDING
+  FULL_AMOUNT_REFUNDED
+}
+
+enum EnumOnsiteEventPaymentStatus {
+  UPFRONT_AMOUNT_PENDING
+  UPFRONT_AMOUNT_DEDUCTED
+  UPFRONT_AMOUNT_REFUND_PENDING
+  UPFRONT_AMOUNT_REFUNDED
+  FULL_AMOUNT_DEDUCTED
+}
+
+enum EnumHostSkillLevel {
+  BEGINNER
+  INTERMEDIATE
+  EXPERT
+}
+
+enum EnumPrivateGroupHosting {
+  NOT_AVAILABLE
+  COMPLEMENTARY
+  EXTRA_COST
+}
+
+enum EnumTransferService {
+  NOT_INCLUDED
+  INCLUDED
+  EXTRA_COST
+}
+
+enum EnumBusinessNature {
+  INDIVIDUAL
+  BUSINESS
+}
+
+enum EnumCategoryService {
+  ACCOMODATION
+  EVENT
+}
+
+enum EnumEventType {
+  ONLINE
+  ONSITE
+}
+
+enum EnumListingType {
+  EVENT
+  STAY
+}
+
+enum EnumListingPaidType {
+  PROMOTED
+  FEATURED
+}
+
+enum EnumCategoryCurrency {
+  USD
+  EUR
+}
+
+model Place {
+  id Int @id @default(autoincrement())
+
+  title          String
+  description    String
+  currency       String?
+  price          Float?
+  place_type     String?
+  street         String
+  city           String
+  province       String
+  postal_code    String
+  country        String
+  rating         Float?
+  subtitle       String?
+  listing_status ListingStats  @default(DRAFT)
+  booking_policy BookingPolicy @default(FLEXIBLE)
+
+  latitude                Float
+  longitude               Float
+  businessNature          EnumBusinessNature
+  individualNbr           String?
+  individualTaxIdNbr      String?
+  businessRegistrationNbr String?
+  businessTaxIdNbr        String?
+
+  user_id        Int
+  user           User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  cover_image_id Int?
+  cover_image    Asset? @relation(fields: [cover_image_id], references: [id])
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+
+  rooms             Room[]
+  reviews           Review[]
+  bookings          Booking[]
+  images            Asset[]             @relation(name: "images")
+  PlaceBuyerHistory PlaceBuyerHistory[]
+}
+
+model Asset {
+  id             Int           @id @default(autoincrement())
+  original_name  String
+  url            String
+  mimetype       String
+  uid            String
+  file_key       String
+  place          Place?        @relation(name: "images", fields: [place_id], references: [id])
+  place_id       Int?
+  eventListingId String?
+  EventListing   EventListing? @relation(name: "files", fields: [eventListingId], references: [id])
+  cover_photos   Place[]
+  createdAt      DateTime      @default(now())
+}
+
+model Room {
+  id        Int       @id @default(autoincrement())
+  title     String
+  price     Int
+  stock     Int       @default(1)
+  beds      RoomBed[]
+  room_type String
+
+  isDiscountAvailable Boolean
+  discount            Float?
+  transferService     EnumTransferService
+  extraAmount         Float?
+
+  place     Place    @relation(fields: [place_id], references: [id], onDelete: Cascade)
+  place_id  Int
+  createdAt DateTime @default(now())
+}
+
+// Not current being used.
+// enum BedSize {
+//   QUEEN
+//   KING
+//   TWIN
+//   DOUBLE
+// }
+
+model RoomBed {
+  id       Int    @id @default(autoincrement())
+  bed_type String
+  amount   Int
+  room     Room   @relation(fields: [room_id], references: [id], onDelete: Cascade)
+  room_id  Int
+}
+
+enum BookingStatus {
+  PENDING
+  ACCEPTED
+  COMPLETED
+  CANCELED
+  DISPUTED
+}
+
+enum ListingStats {
+  ACTIVE
+  HIDDEN
+  DRAFT
+}
+
+enum BookingPolicy {
+  FLEXIBLE
+  MODERATE
+  STRICT
+}
+
+model Booking {
+  id            Int           @id @default(autoincrement())
+  start_date    DateTime
+  end_date      DateTime
+  status        BookingStatus @default(PENDING)
+  policy        BookingPolicy @default(FLEXIBLE)
+  total         Int
+  place         Place?        @relation(fields: [place_id], references: [id])
+  place_id      Int?
+  expierence    Expierence?   @relation(fields: [expierence_id], references: [id])
+  expierence_id Int?
+  seller        User          @relation(fields: [seller_id], references: [id], name: "seller")
+  buyer         User          @relation(fields: [buyer_id], references: [id], name: "buyer")
+  buyer_id      Int
+  seller_id     Int
+  createdAt     DateTime      @default(now())
+}
+
+model Expierence {
+  id             Int          @id @default(autoincrement())
+  title          String
+  subtitle       String?
+  description    String
+  listing_status ListingStats @default(DRAFT)
+  street         String
+  city           String
+  province       String
+  postal_code    String
+  country        String
+  reviews        Review[]
+  packages       Package[]
+  image_uris     String[]
+  createdAt      DateTime     @default(now())
+  bookings       Booking[]
+}
+
+model StayListing {
+  id                      Int                @id @default(autoincrement())
+  metaTitle               String
+  metaDescription         String
+  metaPhotos              String[]
+  location                String
+  businessNature          EnumBusinessNature
+  individualIdNbr         String?
+  individualTaxIdNbr      String?
+  businessRegistrationNbr String?
+  businessTaxIdNbr        String?
+  eventBusiness           String[]
+  eventExperiential       String[]
+  healthAndWellness       String?
+  specialInterest         String?
+  // relations
+  Stay                    Stay[]
+}
+
+model Stay {
+  id                 Int                  @id @default(autoincrement())
+  name               String
+  currency           EnumCategoryCurrency
+  description        String
+  nbrOfRooms         Int
+  nbrOfGuests        Int
+  pricePerNight      Float
+  discount           Float?
+  amenities          String[]
+  facilities         String[]
+  photos             String[]
+  breakfastExtra     Float?
+  transferExtra      Float?
+  priceAfterDiscount Float?
+  // relations
+  stayListingId      Int
+  StayListing        StayListing          @relation(fields: [stayListingId], references: [id])
+}
+
+model Package {
+  id             Int        @id @default(autoincrement())
+  title          String
+  rate           Int
+  maximum_guests Int?
+  expierence     Expierence @relation(fields: [expierence_id], references: [id])
+  expierence_id  Int
+  createdAt      DateTime   @default(now())
+}
+
+model Review {
+  id             Int         @id @default(autoincrement())
+  cleanliness    Float
+  facilities     Float
+  location       Float
+  roomComfort    Float
+  serviceQuality Float
+  valueForMoney  Float
+  user           User        @relation(fields: [user_id], references: [id])
+  user_id        Int
+  place          Place?      @relation(fields: [place_id], references: [id])
+  place_id       Int?
+  createdAt      DateTime    @default(now())
+  expierence     Expierence? @relation(fields: [expierence_id], references: [id])
+  expierence_id  Int?
+}
+
+model Session {
+  id        String   @id
+  sid       String   @unique
+  data      String
+  expiresAt DateTime
+}
