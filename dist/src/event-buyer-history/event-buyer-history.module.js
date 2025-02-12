@@ -1,0 +1,37 @@
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.EventBuyerHistoryModule = void 0;
+const common_1 = require("@nestjs/common");
+const event_buyer_history_service_1 = require("./event-buyer-history.service");
+const event_buyer_history_controller_1 = require("./event-buyer-history.controller");
+const event_buyer_history_repository_1 = require("./event-buyer-history.repository");
+const jwt_utility_service_1 = require("../../common/services/jwt/jwt-utility.service");
+const jwt_1 = require("@nestjs/jwt");
+const users_service_1 = require("../users/users.service");
+const payment_module_1 = require("../payment/payment.module");
+const twilio_service_1 = require("../../common/services/twilio/twilio.service");
+let EventBuyerHistoryModule = class EventBuyerHistoryModule {
+};
+exports.EventBuyerHistoryModule = EventBuyerHistoryModule;
+exports.EventBuyerHistoryModule = EventBuyerHistoryModule = __decorate([
+    (0, common_1.Module)({
+        controllers: [event_buyer_history_controller_1.EventBuyerHistoryController],
+        providers: [
+            event_buyer_history_service_1.EventBuyerHistoryService,
+            event_buyer_history_repository_1.EventBuyerHistoryRepository,
+            jwt_utility_service_1.JwtUtilityService,
+            jwt_1.JwtService,
+            users_service_1.UsersService,
+            twilio_service_1.TwilioService,
+        ],
+        imports: [(0, common_1.forwardRef)(() => payment_module_1.PaymentModule)],
+        exports: [event_buyer_history_service_1.EventBuyerHistoryService],
+    })
+], EventBuyerHistoryModule);
+//# sourceMappingURL=event-buyer-history.module.js.map

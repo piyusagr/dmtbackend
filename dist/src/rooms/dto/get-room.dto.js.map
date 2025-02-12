@@ -1,0 +1,1 @@
+{"version":3,"file":"get-room.dto.js","sourceRoot":"","sources":["../../../../src/rooms/dto/get-room.dto.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,yDAA8C;AAC9C,qDAA6D;AAE7D,MAAa,mBAAmB;CAK/B;AALD,kDAKC;AADC;IAHC,IAAA,4BAAU,GAAE;IACZ,IAAA,gCAAc,GAAE;IAChB,IAAA,6BAAS,EAAC,CAAC,EAAE,KAAK,EAAE,EAAE,EAAE,CAAC,CAAC,KAAK,EAAE,EAAE,WAAW,EAAE,IAAI,EAAE,CAAC;;qDACtC"}
